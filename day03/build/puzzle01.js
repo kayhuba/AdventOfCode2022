@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-console.log("Day 01, Puzzle 02!");
+console.log("Day 03, Puzzle 02!");
 var line_reader_1 = __importDefault(require("line-reader"));
 var sum = 0;
 line_reader_1.default.eachLine("./input/input.txt", function (line, last) {
