@@ -1,5 +1,3 @@
-import {create} from "domain";
-
 console.log("Day 05, Puzzle 01!")
 
 import linereader from "line-reader";
