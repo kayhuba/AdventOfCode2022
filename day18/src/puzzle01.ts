@@ -73,31 +73,17 @@ linereader.eachLine("./input/input.txt", (line, last) => {
 
         cubes.forEach(cube => space[cube.z - minZ][cube.y - minY][cube.x - minX] = true);
 
+        const adjacentVectors: Vector[] = [
+            {x: 0, y: 0, z: 1},
+            {x: 0, y: 0, z:-1},
+            {x: 0, y: 1, z: 0},
+            {x: 0, y:-1, z: 0},
+            {x: 1, y: 0, z: 0},
+            {x:-1, y: 0, z: 0}
+        ];
         let exposedSurfaces: number = 0;
         cubes.forEach(cube => {
-            if (!isOccupied(space, new Vector(cube.x, cube.y, cube.z + 1))) {
-                exposedSurfaces++;
-            }
-
-            if (!isOccupied(space, new Vector(cube.x, cube.y, cube.z - 1))) {
-                exposedSurfaces++;
-            }
-
-            if (!isOccupied(space, new Vector(cube.x, cube.y + 1, cube.z))) {
-                exposedSurfaces++;
-            }
-
-            if (!isOccupied(space, new Vector(cube.x, cube.y - 1, cube.z))) {
-                exposedSurfaces++;
-            }
-
-            if (!isOccupied(space, new Vector(cube.x + 1, cube.y, cube.z))) {
-                exposedSurfaces++;
-            }
-
-            if (!isOccupied(space, new Vector(cube.x - 1, cube.y, cube.z))) {
-                exposedSurfaces++;
-            }
+            exposedSurfaces += adjacentVectors.filter(vector => !isOccupied(space, new Vector(cube.x + vector.x, cube.y + vector.y, cube.z + vector.z))).length;
         });
 
         console.log("Total surface area: ", exposedSurfaces);
